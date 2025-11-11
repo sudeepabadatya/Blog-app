@@ -1,12 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-import Home from "./pages/home";
-import CategoryPage from "./pages/CategoryPage";
-import PostDetails from "./pages/PostDetails";
-import CreatePost from "./pages/CreatePost";
-import EditPost from "./pages/EditPost";
-import SignIn from "./pages/SignIn";
+import Home from "./pages/home.jsx";
+import CategoryPage from "./pages/CategoryPage.jsx";
+import PostDetails from "./pages/PostDetails.jsx";
+import CreatePost from "./pages/CreatePost.jsx";
+import EditPost from "./pages/EditPost.jsx";
+import SignIn from "./pages/SignIn.jsx";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
