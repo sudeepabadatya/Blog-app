@@ -24,7 +24,8 @@ export default function Navbar() {
 
   return (
    <nav className="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-gray-900/60 border-b border-gray-200 dark:border-gray-800">
-  <div className="w-full px-6 py-3 flex items-center justify-between">
+    <div className="w-full px-4 md:px-6 py-3 flex items-center justify-between">
+
         <Link to="/" className="font-bold text-xl tracking-tight">
           InfiniteFeed
         </Link>
