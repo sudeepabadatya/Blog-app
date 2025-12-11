@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useEffect, useState } from 'react';
-import { storage } from '../utils/storage';
+import { createContext, useEffect, useState } from "react";
+import { storage } from "../utils/storage";
 
 export const AuthContext = createContext();
 
@@ -12,8 +12,22 @@ export default function AuthProvider({ children }) {
     if (saved) setUser(saved);
   }, []);
 
-  const signIn = (email) => {
-    const u = { email };
+  const signIn = (emailOrPayload) => {
+    const payload =
+      typeof emailOrPayload === "string"
+        ? { email: emailOrPayload }
+        : emailOrPayload ?? {};
+
+    const id =
+      payload.id ??
+      (typeof crypto !== "undefined" && crypto.randomUUID
+        ? crypto.randomUUID()
+        : Date.now().toString());
+    const u = {
+      id,
+      email: payload.email,
+      name: payload.name ?? payload.email?.split("@")[0] ?? "User",
+    };
     setUser(u);
     storage.set(storage.keys.AUTH, u);
   };
@@ -36,4 +50,3 @@ export default function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-

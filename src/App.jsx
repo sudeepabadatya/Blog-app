@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-import Home from "./pages/home.jsx";
+import Home from "./pages/Home.jsx";
 import CategoryPage from "./pages/CategoryPage";
 import PostDetails from "./pages/PostDetails";
 import CreatePost from "./pages/CreatePost";

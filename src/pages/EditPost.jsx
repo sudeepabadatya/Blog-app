@@ -4,13 +4,34 @@ import { postSchema } from "../utils/zodSchemas";
 import { usePosts } from "../hooks/usePosts";
 
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { useEffect } from "react";
+
 
 export default function EditPost() {
   const { id } = useParams();
   const { posts, updatePost } = usePosts();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const post = posts.find((p) => p.id === id);
+
+useEffect(() => {
+    if (!post) return; 
+    const postAuthorId = post.authorId ?? post.author ?? null;
+    const postAuthorEmail = post.authorEmail ?? post.email ?? null;
+
+    const isOwner =
+      !!user &&
+      ((user.id && postAuthorId && user.id === postAuthorId) ||
+        (user.email && postAuthorEmail && user.email === postAuthorEmail));
+
+    if (!isOwner) {
+      alert("Not authorized to edit this post");
+      navigate("/");
+    }
+  }, [post, user, navigate]);
+
   const {
     register,
     handleSubmit,
@@ -24,7 +45,21 @@ export default function EditPost() {
       category: "Sports",
     },
   });
+
   const onSubmit = (data) => {
+     const postAuthorId = post?.authorId ?? post?.author ?? null;
+    const postAuthorEmail = post?.authorEmail ?? post?.email ?? null;
+
+    const isOwner =
+      !!user &&
+      ((user.id && postAuthorId && user.id === postAuthorId) ||
+        (user.email && postAuthorEmail && user.email === postAuthorEmail));
+
+    if (!isOwner) {
+      alert("Not authorized");
+      return;
+    }
+
     updatePost(id, data);
     navigate(`/post/${id}`);
   };
