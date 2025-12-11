@@ -65,12 +65,14 @@ export default function Navbar() {
             <Moon className="dark:hidden" size={18} />
           </button>
 
-          <NavLink
-            to="/create"
-            className="hidden sm:inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white"
-          >
-            <PlusCircle size={18} /> Create
-          </NavLink>
+          {isAuthenticated && (
+            <NavLink
+              to="/create"
+              className="hidden sm:inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white"
+            >
+              <PlusCircle size={18} /> Create
+            </NavLink>
+          )}
 
           {!isAuthenticated ? (
             <NavLink to="/signin" className="px-3 py-2 rounded-xl border">

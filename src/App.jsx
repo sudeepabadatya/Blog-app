@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-import Home from "./pages/Home.jsx";
+import Home from "./pages/home.jsx";
 import CategoryPage from "./pages/CategoryPage";
 import PostDetails from "./pages/PostDetails";
 import CreatePost from "./pages/CreatePost";
@@ -28,22 +28,8 @@ export default function App() {
         <Route path="/category/:name" element={<CategoryPage />} />
         <Route path="/post/:id" element={<PostDetails />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route
-          path="/create"
-          element={
-            <ProtectedRoute>
-              <CreatePost />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/edit/:id"
-          element={
-            <ProtectedRoute>
-              <EditPost />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/create" element={<ProtectedRoute><CreatePost /></ProtectedRoute>}/>
+        <Route path="/edit/:id" element={<ProtectedRoute><EditPost /></ProtectedRoute>}/>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
